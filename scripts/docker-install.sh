@@ -81,5 +81,6 @@ NUM_CPU=16
 cd $GOPATH/src/github.com/docker
 git clone git@github.com:mkwon0/docker-proxy-swap.git "$GOPATH/src/github.com/docker/libnetwork"
 cd "$GOPATH/src/github.com/docker/libnetwork"
-go build -ldflags="$PROXY_LDFLAGS" -o /usr/local/bin/docker-proxy github.com/docker/libnetwork/cmd/proxy
+go build -ldflags="$PROXY_LDFLAGS"
+sudo cp cmd/proxy /usr/local/bin/docker-proxy
 
