@@ -78,9 +78,23 @@ NUM_CPU=16
 
 
 #### Install docker-proxy
-cd $GOPATH/src/github.com/docker
-git clone git@github.com:mkwon0/docker-proxy-swap.git "$GOPATH/src/github.com/docker/libnetwork"
-cd "$GOPATH/src/github.com/docker/libnetwork"
-go build -ldflags="$PROXY_LDFLAGS"
-sudo cp cmd/proxy /usr/local/bin/docker-proxy
+#cd $GOPATH/src/github.com/docker
+#git clone git@github.com:mkwon0/docker-proxy-swap.git "$GOPATH/src/github.com/docker/libnetwork"
+#cd "$GOPATH/src/github.com/docker/libnetwork"
+#go build -ldflags="$PROXY_LDFLAGS"
+#sudo cp cmd/proxy /usr/local/bin/docker-proxy
+
+#### docker test
+ll /usr/local/bin/docker*
+sudo groupadd docker
+sudo usermod -aG docker $USER
+
+cd /usr/local/bin
+dockerd &
+ps aux | grep docker
+docker version
+docker pull busybox
+docker run -idt --memory-swapfile "none" busybox
+docker ps -a
+
 
