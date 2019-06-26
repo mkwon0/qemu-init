@@ -85,12 +85,10 @@ NUM_CPU=16
 #sudo cp cmd/proxy /usr/local/bin/docker-proxy
 
 #### docker test
-ll /usr/local/bin/docker*
-sudo groupadd docker
-sudo usermod -aG docker $USER
+#sudo groupadd docker
+#sudo usermod -aG docker $USER
 
-cd /usr/local/bin
-sudo dockerd &
+cd /usr/local/bin && sudo dockerd &
 ps aux | grep docker
 docker version
 docker pull busybox
