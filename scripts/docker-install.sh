@@ -44,10 +44,18 @@ NUM_CPU=16
 #go build && sudo cp dockerd /usr/local/bin
 
 #### Install docker containerd
-git clone git@github.com:mkwon0/docker-containerd-swap.git "${GOPATH}/src/github.com/docker/containerd"
-cd "${GOPATH}/src/github.com/docker/containerd"
+#git clone git@github.com:mkwon0/docker-containerd-swap.git "${GOPATH}/src/github.com/docker/containerd"
+#cd "${GOPATH}/src/github.com/docker/containerd"
+#
+#make static -j${NUM_CPU} -s
+#sudo cp bin/containerd /usr/local/bin/docker-containerd
+#sudo cp bin/containerd-shim /usr/local/bin/docker-containerd-shim
+#sudo cp bin/ctr /usr/local/bin/docker-containerd-ctr
 
-make static -j${NUM_CPU} -s
-sudo cp bin/containerd /usr/local/bin/docker-containerd
-sudo cp bin/containerd-shim /usr/local/bin/docker-containerd-shim
-sudo cp bin/ctr /usr/local/bin/docker-containerd-ctr
+#### Install docker-runc
+cd $GOPATH/src/github.com/
+mkdir opencontainers && cd opencontainers
+git clone git@github.com:mkwon0/docker-runc-swap.git "${GOPATH}/src/github.com/opencontainers/runc"
+cd  ${GOPATH}/src/github.com/opencontainers/runc
+make BUILDTAGS="${RUNC_BUILDTAGS:-"selinux"}" static -j${NUM_CPU} -s
+cp runc /usr/local/bin/docker-runc
