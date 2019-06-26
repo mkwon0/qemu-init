@@ -67,11 +67,19 @@ NUM_CPU=16
 
 
 #### Install docker-init
-cd $GOPATH/src/github.com/
-mkdir krallin && cd krallin
-git clone https://github.com/krallin/tini.git "$GOPATH/tini"
-cd "$GOPATH/tini"
-git checkout -q 949e6facb77383876aeff8a6944dde66b3089574
-cmake .
-make tini-static -j${NUM_CPU} -s
-sudo cp tini-static /usr/local/bin/docker-init
+#cd $GOPATH/src/github.com/
+#mkdir krallin && cd krallin
+#git clone https://github.com/krallin/tini.git "$GOPATH/tini"
+#cd "$GOPATH/tini"
+#git checkout -q 949e6facb77383876aeff8a6944dde66b3089574
+#cmake .
+#make tini-static -j${NUM_CPU} -s
+#sudo cp tini-static /usr/local/bin/docker-init
+
+
+#### Install docker-proxy
+cd $GOPATH/src/github.com/docker
+git clone git@github.com:mkwon0/docker-proxy-swap.git "$GOPATH/src/github.com/docker/libnetwork"
+cd "$GOPATH/src/github.com/docker/libnetwork"
+go build -ldflags="$PROXY_LDFLAGS" -o /usr/local/bin/docker-proxy github.com/docker/libnetwork/cmd/proxy
+
