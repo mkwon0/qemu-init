@@ -22,13 +22,16 @@ NUM_CPU=16
 #go get -u github.com/kardianos/govendor
 #cp ${GOPATH}/bin/govendor /usr/local/go/bin/
 
+
 ##### Check installed golang
 #go version
 #ls /home/mygo/ /home/mygo/src/ /home/mygo/src/github.com/ /usr/local/go/bin/
 
+
 ##### Docker install
 #sudo yum install -y gcc make cmake device-mapper-devel \
 #    btrfs-progs-devel libarchive libseccomp-devel glibc-static
+
 
 #### Install docker client & server
 #cd $GOPATH/src/github.com/
@@ -43,6 +46,7 @@ NUM_CPU=16
 #cd $GOPATH/src/github.com/docker/docker/cmd/dockerd
 #go build && sudo cp dockerd /usr/local/bin
 
+
 #### Install docker containerd
 #git clone git@github.com:mkwon0/docker-containerd-swap.git "${GOPATH}/src/github.com/docker/containerd"
 #cd "${GOPATH}/src/github.com/docker/containerd"
@@ -52,10 +56,22 @@ NUM_CPU=16
 #sudo cp bin/containerd-shim /usr/local/bin/docker-containerd-shim
 #sudo cp bin/ctr /usr/local/bin/docker-containerd-ctr
 
+
 #### Install docker-runc
+#cd $GOPATH/src/github.com/
+#mkdir opencontainers && cd opencontainers
+#git clone git@github.com:mkwon0/docker-runc-swap.git "${GOPATH}/src/github.com/opencontainers/runc"
+#cd  ${GOPATH}/src/github.com/opencontainers/runc
+#make BUILDTAGS="${RUNC_BUILDTAGS:-"selinux"}" static -j${NUM_CPU} -s
+#sudo cp runc /usr/local/bin/docker-runc
+
+
+#### Install docker-init
 cd $GOPATH/src/github.com/
-mkdir opencontainers && cd opencontainers
-git clone git@github.com:mkwon0/docker-runc-swap.git "${GOPATH}/src/github.com/opencontainers/runc"
-cd  ${GOPATH}/src/github.com/opencontainers/runc
-make BUILDTAGS="${RUNC_BUILDTAGS:-"selinux"}" static -j${NUM_CPU} -s
-cp runc /usr/local/bin/docker-runc
+mkdir krallin && cd krallin
+git clone https://github.com/krallin/tini.git "$GOPATH/tini"
+cd "$GOPATH/tini"
+git checkout -q 949e6facb77383876aeff8a6944dde66b3089574
+cmake .
+make tini-static -j${NUM_CPU} -s
+sudo cp tini-static /usr/local/bin/docker-init
