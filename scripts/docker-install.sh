@@ -88,11 +88,41 @@ NUM_CPU=16
 #sudo groupadd docker
 #sudo usermod -aG docker $USER
 
-cd /usr/local/bin && sudo dockerd &
-ps aux | grep docker
-docker version
-docker pull busybox
-docker run -idt --memory-swapfile "none" busybox
-docker ps -a
+#cd /usr/local/bin && sudo dockerd &
+#ps aux | grep docker
+#docker version
+#docker pull busybox
+#docker run -idt --memory-swapfile "none" busybox
+#docker ps -a
+
+
+#### Docker service
+cat > docker.service <<EOF
+[Unit]
+Description=Docker Application Container Engine
+Documentation=http://docs.docker.io
+
+[Service]
+Environment="PATH=/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin"
+EnvironmentFile=-/run/flannel/docker
+ExecStart=/usr/local/bin/dockerd --log-level=error $DOCKER_NETWORK_OPTIONS
+ExecReload=/bin/kill -s HUP $MAINPID
+Restart=on-failure
+RestartSec=5
+LimitNOFILE=infinity
+LimitNPROC=infinity
+LimitCORE=infinity
+Delegate=yes
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+sudo cp docker.service /etc/systemd/system/docker.service
+sudo systemctl daemon-reload
+sudo systemctl enable docker
+sudo systemctl start docker
+sudo systemctl status docker
 
 
