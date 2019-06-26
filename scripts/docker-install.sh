@@ -90,7 +90,7 @@ sudo groupadd docker
 sudo usermod -aG docker $USER
 
 cd /usr/local/bin
-dockerd &
+sudo dockerd &
 ps aux | grep docker
 docker version
 docker pull busybox
