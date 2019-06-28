@@ -28,7 +28,7 @@ def cat_proc_mem(pid):
     ranges = map(maps_line_range, maps_file.readlines())
     maps_file.close()
     ## Read the readable mapped ranges
-    mem_file = open("/proc/" + pid + "/mem", 'r', 0)
+    mem_file = open("/proc/" + pid + "/mem", 'rb', 0)
     for r in ranges:
         if r[2] == 'r':
             mem_file.seek(r[0])
