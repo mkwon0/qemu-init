@@ -13,9 +13,9 @@ NUM_CPU=16
 #sudo mkdir -p /home/mygo
 #sudo chown -R mkwon:mkwon /home/mygo
 #
-#sudo echo "export GOROOT=/usr/local/go" >> /etc/profile
-#sudo echo "export GOPATH=/home/mygo" >> /etc/profile
-#sudo echo "export PATH=\$PATH:\$GOROOT/bin" >> /etc/profile
+#echo "export GOROOT=/usr/local/go" >> /etc/profile
+#echo "export GOPATH=/home/mygo" >> /etc/profile
+#echo "export PATH=\$PATH:\$GOROOT/bin" >> /etc/profile
 #source /etc/profile
 #
 #sudo wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
@@ -81,8 +81,7 @@ NUM_CPU=16
 #cd $GOPATH/src/github.com/docker
 #git clone git@github.com:mkwon0/docker-proxy-swap.git "$GOPATH/src/github.com/docker/libnetwork"
 #cd "$GOPATH/src/github.com/docker/libnetwork"
-#go build -ldflags="$PROXY_LDFLAGS"
-#sudo cp cmd/proxy /usr/local/bin/docker-proxy
+#go build -ldflags="$PROXY_LDFLAGS" -o /usr/local/bin/docker-proxy github.com/docker/libnetwork/cmd/proxy
 
 #### docker test
 #sudo groupadd docker
