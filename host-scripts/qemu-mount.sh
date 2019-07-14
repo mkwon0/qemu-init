@@ -3,6 +3,10 @@
 WORK_DIR=$HOME/qemu && mkdir -p $WORK_DIR
 IMG_PATH=/var/lib/libvirt/images/centos7.0.qcow2
 
+### Debugger install
+
+
+### Mount 
 sudo yum install -y libguestfs-tools
 mkdir -p root_mnt
 sudo guestmount -a $IMG_PATH -m /dev/centos/root root_mnt

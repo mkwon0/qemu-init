@@ -33,18 +33,21 @@ source /etc/profile
 #    btrfs-progs-devel libarchive libseccomp-devel glibc-static
 
 #### Install centos7 docker-ce
-sudo yum install -y yum-utils device-mapper-persistent-data lvm2
-sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-sudo yum install docker-ce -y
-sudo systemctl start docker
+#sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+#sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+#sudo yum install docker-ce -y
+#sudo systemctl start docker
+
+### docker test
+#sudo groupadd docker
+#sudo usermod -aG docker $USER
 
 ### Install docker client & server
-#cd $GOPATH/src/github.com/
-#mkdir docker && cd docker
-#git clone https://github.com/mkwon0/docker-ce-swap.git \
-#&& cd docker-ce-swap \
-#&& make static DOCKER_BUILD_PKGS=static-linux -j$NUM_CPU -s \
-#&& sudo cp components/packaging/static/build/linux/docker/* /usr/local/bin/
+cd $GOPATH/src/github.com/ \
+&& git clone https://github.com/mkwon0/docker-ce-swap.git \
+&& cd docker-ce-swap \
+&& make static DOCKER_BUILD_PKGS=static-linux -j$NUM_CPU -s \
+&& sudo cp components/packaging/static/build/linux/docker/* /usr/local/bin/
 
 ### docker test
 #sudo groupadd docker
