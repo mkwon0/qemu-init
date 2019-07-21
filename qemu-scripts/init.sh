@@ -13,9 +13,8 @@ EOF
 
 ## Init packages
 #sudo yum install screen -y
-#sudo yum groupinstall "Development Tools" -y
-#sudo yum install ncurses-devel bison bc flex eltutils-libelf-devel openssl-devel elfutils-libelf-devel -y
-#sudo yum install git -y
+#sudo yum -y groupinstall "Development Tools"
+#sudo yum -y install ncurses-devel bison bc flex eltutils-libelf-devel openssl-devel elfutils-libelf-devel
 
 ## Add nameserver
 #sudo sed -i '1 i\nameserver 8.8.8.8' /etc/resolv.conf
