@@ -1,15 +1,15 @@
 #!/bin/bash
 NUM_CPU_HERE=16
-DIR_WORK=/home/mkwon
+DIR_WORK=/home/mkwon/src
 DIR=/home/mkwon/qemu-init
 
-sudo yum install -y git screen vim
-## Add simple configuration to vi configuration
-cat <<EOF >$HOME/.vimrc
-let g:go_version_warning = 0
-vnoremap <S-D> :norm i#<CR>
-vnoremap <S-U> :norm ^x<CR>
-EOF
+#sudo yum install -y git screen vim
+### Add simple configuration to vi configuration
+#cat <<EOF >$HOME/.vimrc
+#let g:go_version_warning = 0
+#vnoremap <S-D> :norm i#<CR>
+#vnoremap <S-U> :norm ^x<CR>
+#EOF
 
 ## Init packages
 #sudo yum install screen -y
@@ -33,12 +33,12 @@ EOF
 #sudo grubby --set-default /boot/vmlinuz-5.0.7.img
 
 ## Clone util-linux-swap
-#cd $DIR_WORK
-#git clone git@github.com:mkwon0/util-linux-swap.git
-#cd util-linux-swap
-#./autogen.sh
-#./configure --disable-libuuid --prefix=/usr/bin
-#sudo make -j16 -s
-#sudo cp swapon swapoff /sbin/
+cd $DIR_WORK \
+&& git clone git@github.com:mkwon0/util-linux-swap.git \
+&& cd util-linux-swap \
+&& ./autogen.sh \
+&& ./configure --disable-libuuid --prefix=/usr/sbin \
+&& sudo make -j16 -s \
+&& sudo cp swapon swapoff /usr/sbin/ \
 
 #sudo reboot
