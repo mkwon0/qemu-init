@@ -3,7 +3,7 @@ NUM_CPU_HERE=16
 DIR_WORK=/home/mkwon/src
 DIR=/home/mkwon/qemu-init
 
-#sudo yum install -y git screen vim
+sudo yum install -y git screen vim
 ### Add simple configuration to vi configuration
 cat <<EOF >$HOME/.vimrc
 let g:go_version_warning = 0

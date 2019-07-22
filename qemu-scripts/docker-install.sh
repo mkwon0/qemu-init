@@ -204,12 +204,12 @@ main() {
     modify_profile
 
     ##### Execute as normal user
-    install_golang
-    install_docker
-    install_docker_ce
-    disable_selinux
-    restart_service
-    install_docker_compose
+#    install_golang
+#    install_docker
+#    install_docker_ce
+#    disable_selinux
+#    restart_service
+#    install_docker_compose
 }
 
 main
