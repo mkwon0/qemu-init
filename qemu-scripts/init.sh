@@ -5,12 +5,12 @@ DIR=/home/mkwon/qemu-init
 
 #sudo yum install -y git screen vim
 ### Add simple configuration to vi configuration
-#cat <<EOF >$HOME/.vimrc
-#let g:go_version_warning = 0
-#vnoremap <S-D> :norm i#<CR>
-#vnoremap <S-U> :norm ^x<CR>
-#set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
-#EOF
+cat <<EOF >$HOME/.vimrc
+let g:go_version_warning = 0
+vnoremap <S-D> :norm i#<CR>
+vnoremap <S-U> :norm ^x<CR>
+set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+EOF
 
 ## Init packages
 #sudo yum install screen -y
@@ -22,8 +22,8 @@ DIR=/home/mkwon/qemu-init
 #sudo sed -i '1 i\nameserver 8.8.4.4' /etc/resolv.conf
 
 ## Clone linux-5.0.7-swap
-cd $DIR_WORK
-git clone git@github.com:mkwon0/linux-5.0.7-swap.git
+#cd $DIR_WORK
+#git clone git@github.com:mkwon0/linux-5.0.7-swap.git
 #cp qemu-init/.config linux-5.0.7-swap/
 #cd linux-5.0.7-swap
 #make -j${NUM_CPU_HERE} -s
