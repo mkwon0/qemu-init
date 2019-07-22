@@ -46,6 +46,9 @@ install_docker() {
     ## docker test
     sudo groupadd docker
     sudo usermod -aG docker $USER
+
+    echo "$(tput setaf 4 bold)$(tput setab 7)WARNING!!!!!!!!!!!!!!!!!!$(tput sgr 0)"
+    echo "$(tput setaf 4 bold)$(tput setab 7)Plz restart shell$(tput sgr 0)"
 }
 
 #### NOTE
@@ -171,20 +174,16 @@ disable_selinux() {
     sudo sed -i 's/enforcing/disabled/g' /etc/selinux/config /etc/selinux/config
     sudo sestatus
 
+    
     echo ""
-    echo "Finished with script execution!"
-    echo "In the above output, you'll see that the value of 'SELinux status' is 'enabled'."
-    echo "That is normal. Do the following two steps:"
-    echo " 1. reboot your environment: "
-    echo ""
-    echo "      sudo shutdown -r now"
-    echo ""
-    echo " 2. When you server comes back online, run this command:"
-    echo ""
-    echo "      sudo sestatus"
-    echo ""
-    echo "    You should then see 'SELinux status: disabled' to confirm that SELinux is in fact disabled"
-    echo ""
+    echo "$(tput setaf 4 bold)$(tput setab 7)Finished with script execution!$(tput sgr 0)"
+    echo "$(tput setaf 4 bold)$(tput setab 7)In the above output, you'll see that the value of 'SELinux status' is 'enabled'.$(tput sgr 0)"
+    echo "$(tput setaf 4 bold)$(tput setab 7)That is normal. Do the following two steps:$(tput sgr 0)"
+    echo "$(tput setaf 4 bold)$(tput setab 7)1. reboot your environment:$(tput sgr 0)"
+    echo "$(tput setaf 4 bold)$(tput setab 7)sudo shutdown -r now$(tput sgr 0)"
+    echo "$(tput setaf 4 bold)$(tput setab 7)2. When you server comes back online, run this command:$(tput sgr 0)"
+    echo "$(tput setaf 4 bold)$(tput setab 7)sudo sestatus$(tput sgr 0)"
+    echo "$(tput setaf 4 bold)$(tput setab 7)You should then see 'SELinux status: disabled' to confirm that SELinux is in fact disabled$(tput sgr 0)"
 
     docker run --rm hello-world
 }
