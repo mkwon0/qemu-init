@@ -186,3 +186,5 @@ echo "      sudo sestatus"
 echo ""
 echo "    You should then see 'SELinux status: disabled' to confirm that SELinux is in fact disabled"
 echo ""
+
+docker run --rm hello-world
