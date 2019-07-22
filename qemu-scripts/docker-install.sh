@@ -189,9 +189,6 @@ disable_selinux() {
 }
 
 install_docker_compose() {
-    sudo yum install -y epel-release python-pip python-devel
-    sudo pip install --force-reinstall -U setuptools pip
-
     cd $GOPATH/src/github.com/docker \
     && git clone https://github.com/mkwon0/docker-compose-swap.git \
     && cd docker-compose-swap/ \
