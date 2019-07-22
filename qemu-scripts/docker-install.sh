@@ -5,13 +5,13 @@ NUM_CPU=16
 #### Install golang
 cur_path=`pwd`
 
-#sudo yum install wget git -y
-#wget https://dl.google.com/go/go1.12.6.linux-amd64.tar.gz
-#sudo tar xf ${cur_path}/go1.12.6.linux-amd64.tar.gz -C /usr/local
-#rm -rf ${cur_path}/go1.12.6.linux-amd64.tar.gz
+#sudo yum install wget -y
+#wget https://dl.google.com/go/go1.12.6.linux-amd64.tar.gz \
+#&& sudo tar xf ${cur_path}/go1.12.6.linux-amd64.tar.gz -C /usr/local \
+#&& rm -rf ${cur_path}/go1.12.6.linux-amd64.tar.gz
 #
-#sudo mkdir -p /home/mygo
-#sudo chown -R mkwon:mkwon /home/mygo
+#sudo mkdir -p /home/mygo \
+#&& sudo chown -R mkwon:mkwon /home/mygo
 
 #echo "export GOROOT=/usr/local/go" >> /etc/profile
 #echo "export GOPATH=/home/mygo" >> /etc/profile
@@ -50,10 +50,10 @@ cur_path=`pwd`
 #sudo pip install --force-reinstall -U setuptools
 #sudo pip install --force-reinstall -U pip
 
-cd $GOPATH/src/github.com/docker \
-&& git clone https://github.com/mkwon0/docker-compose-swap.git \
-&& cd docker-compose-swap/ \
-&& sudo ./init.sh
+#cd $GOPATH/src/github.com/docker \
+#&& git clone https://github.com/mkwon0/docker-compose-swap.git \
+#&& cd docker-compose-swap/ \
+#&& sudo ./init.sh
 
 ### Prerequisite
 
@@ -168,3 +168,21 @@ cd $GOPATH/src/github.com/docker \
 #sudo systemctl enable containerd
 #sudo systemctl status docker
 #sudo systemctl status containerd
+
+sudo sed -i 's/enforcing/disabled/g' /etc/selinux/config /etc/selinux/config
+sudo sestatus
+
+echo ""
+echo "Finished with script execution!"
+echo "In the above output, you'll see that the value of 'SELinux status' is 'enabled'."
+echo "That is normal. Do the following two steps:"
+echo " 1. reboot your environment: "
+echo ""
+echo "      sudo shutdown -r now"
+echo ""
+echo " 2. When you server comes back online, run this command:"
+echo ""
+echo "      sudo sestatus"
+echo ""
+echo "    You should then see 'SELinux status: disabled' to confirm that SELinux is in fact disabled"
+echo ""
