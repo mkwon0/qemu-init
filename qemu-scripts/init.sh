@@ -9,6 +9,7 @@ DIR=/home/mkwon/qemu-init
 #let g:go_version_warning = 0
 #vnoremap <S-D> :norm i#<CR>
 #vnoremap <S-U> :norm ^x<CR>
+#set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 #EOF
 
 ## Init packages
