@@ -205,7 +205,7 @@ main() {
 #    install_docker_ce
 #    disable_selinux
 #    restart_service
-#    install_docker_compose
+   install_docker_compose
 }
 
 main
